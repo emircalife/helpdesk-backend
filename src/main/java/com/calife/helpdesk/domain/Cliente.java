@@ -29,15 +29,15 @@ public class Cliente extends Pessoa{
 		addPerfil(Perfil.CLIENTE);
 	}
 
-	public Cliente(ClienteDTO cliente) {
+	public Cliente(ClienteDTO objDTO) {
 		super();
-		this.id = cliente.getId();
-		this.nome = cliente.getNome();
-		this.cpf = cliente.getCpf();
-		this.email = cliente.getEmail();
-		this.senha = cliente.getSenha();
-		this.perfis = cliente.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-		this.dataCriacao = cliente.getDataCriacao();
+		this.id = objDTO.getId();
+		this.nome = objDTO.getNome();
+		this.cpf = objDTO.getCpf();
+		this.email = objDTO.getEmail();
+		this.senha = objDTO.getSenha();
+		this.perfis = objDTO.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = objDTO.getDataCriacao();
 	}
 	
 	public List<Chamado> getChamados() {
