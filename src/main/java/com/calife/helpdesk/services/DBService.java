@@ -3,6 +3,7 @@ package com.calife.helpdesk.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.calife.helpdesk.domain.Chamado;
@@ -27,11 +28,14 @@ public class DBService {
 	@Autowired
 	private ChamadoRepository chamadoRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	public void instanciaDB() {
-		Tecnico tec1 = new Tecnico(null, "Emir Calife", "02159070432", "emircalife@gmail.com", "123");
+		Tecnico tec1 = new Tecnico(null, "Emir Calife", "02159070432", "emircalife@gmail.com", encoder.encode("123"));
 		tec1.addPerfil(Perfil.ADMIN);
 		
-		Cliente cli1 = new Cliente(null, "Linus Torvalds", "16805083001", "torvalds@mail.com", "123");
+		Cliente cli1 = new Cliente(null, "Linus Torvalds", "16805083001", "torvalds@mail.com", encoder.encode("123"));
 		
 		Chamado ch1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro chamado", tec1, cli1);
 		
